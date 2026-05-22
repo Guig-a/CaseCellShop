@@ -310,7 +310,7 @@ Frontend:
 
 ## Ordem de implementação
 
-1. Criar commit inicial com este `spec.md`.
+1. Criar commit inicial com este `project_spec.md`.
 2. Criar backend NestJS.
 3. Implementar store em memória de produtos e estoque.
 4. Implementar `GET /products`.
