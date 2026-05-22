@@ -149,6 +149,12 @@ input:disabled {
   background: #ffffff;
 }
 
+.field-error {
+  color: #991b1b;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .checkout-button {
   padding: 12px 16px;
   border-radius: 12px;

@@ -16,8 +16,9 @@ export function ProductCard({
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
   const isOutOfStock = product.availableStock === 0;
+  const isAboveAvailableStock = quantity > product.availableStock;
   const isInvalidQuantity =
-    quantity < 1 || quantity > product.availableStock || !Number.isInteger(quantity);
+    quantity < 1 || isAboveAvailableStock || !Number.isInteger(quantity);
   const isDisabled = isSubmitting || isOutOfStock || isInvalidQuantity;
 
   function handleQuantityChange(nextQuantity: number) {
@@ -59,6 +60,11 @@ export function ProductCard({
           disabled={isSubmitting || isOutOfStock}
           onChange={handleQuantityChange}
         />
+        {isAboveAvailableStock && (
+          <p className="field-error">
+            Quantidade maior que o estoque disponivel.
+          </p>
+        )}
         <CheckoutButton disabled={isDisabled} isSubmitting={isSubmitting} />
       </form>
     </article>
