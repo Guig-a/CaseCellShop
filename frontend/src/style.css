@@ -24,10 +24,12 @@ input {
 }
 
 .app-shell {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   min-height: 100vh;
   padding: 24px;
-  place-items: center;
+  align-items: center;
 }
 
 .hero-card {
@@ -59,4 +61,127 @@ p {
   margin: 0;
   color: #4b5563;
   line-height: 1.6;
+}
+
+h2 {
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.products-section {
+  display: grid;
+  gap: 16px;
+  width: min(100%, 960px);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgb(15 23 42 / 6%);
+}
+
+.product-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0;
+}
+
+.product-meta div {
+  padding: 12px;
+  border-radius: 14px;
+  background: #f9fafb;
+}
+
+.product-meta dt {
+  color: #6b7280;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.product-meta dd {
+  margin: 4px 0 0;
+  color: #111827;
+  font-weight: 700;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 12px;
+}
+
+.quantity-selector {
+  display: grid;
+  gap: 6px;
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.quantity-selector input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  color: #111827;
+  background: #ffffff;
+}
+
+.checkout-button {
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: #ffffff;
+  background: #0f766e;
+  font-weight: 800;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.checkout-button:not(:disabled):hover {
+  background: #115e59;
+  transform: translateY(-1px);
+}
+
+.status-message {
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+.status-message--info {
+  color: #1e3a8a;
+  background: #dbeafe;
+}
+
+.status-message--success {
+  color: #14532d;
+  background: #dcfce7;
+}
+
+.status-message--error {
+  color: #7f1d1d;
+  background: #fee2e2;
 }
