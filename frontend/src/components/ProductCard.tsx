@@ -44,7 +44,7 @@ export function ProductCard({
 
       <dl className="product-meta">
         <div>
-          <dt>Preco</dt>
+          <dt>Preço</dt>
           <dd>{formatCurrency(product.price)}</dd>
         </div>
         <div>
@@ -62,7 +62,7 @@ export function ProductCard({
         />
         {isAboveAvailableStock && (
           <p className="field-error">
-            Quantidade maior que o estoque disponivel.
+            Quantidade maior que o estoque disponível.
           </p>
         )}
         <CheckoutButton disabled={isDisabled} isSubmitting={isSubmitting} />

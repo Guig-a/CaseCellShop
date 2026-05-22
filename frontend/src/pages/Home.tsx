@@ -29,11 +29,11 @@ export function Home() {
         <h1>Checkout de capinhas</h1>
         <p>
           Escolha uma capinha, informe a quantidade e finalize a compra com
-          validacao de estoque em tempo real.
+          validação de estoque em tempo real.
         </p>
       </section>
 
-      <section className="products-section" aria-label="Produtos disponiveis">
+      <section className="products-section" aria-label="Produtos disponíveis">
         {isLoadingProducts && (
           <StatusMessage variant="info">Carregando produtos...</StatusMessage>
         )}

@@ -23,7 +23,7 @@ export class CheckoutService {
     if (!product) {
       throw new NotFoundException({
         error: 'PRODUCT_NOT_FOUND',
-        message: 'Produto nao encontrado.',
+        message: 'Produto não encontrado.',
       });
     }
 
@@ -31,7 +31,7 @@ export class CheckoutService {
       throw new ServiceUnavailableException({
         error: 'ERP_UNAVAILABLE',
         message:
-          'Nao foi possivel concluir a compra no momento. Tente novamente.',
+          'Não foi possível concluir a compra no momento. Tente novamente.',
       });
     }
 

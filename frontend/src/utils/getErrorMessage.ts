@@ -6,7 +6,7 @@ export function getErrorMessage(error: unknown): string {
   }
 
   if (error instanceof TypeError) {
-    return 'Nao foi possivel conectar com a API. Verifique se o backend esta em execucao.';
+    return 'Não foi possível conectar com a API. Verifique se o backend está em execução.';
   }
 
   return 'Ocorreu um erro inesperado. Tente novamente.';

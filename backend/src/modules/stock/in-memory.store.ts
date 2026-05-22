@@ -16,7 +16,7 @@ export class InMemoryStore {
       {
         id: 'case-iphone-15',
         name: 'Capinha Transparente iPhone 15',
-        description: 'Capinha flexivel transparente com protecao contra impacto.',
+        description: 'Capinha flexível transparente com proteção contra impacto.',
         price: 49.9,
       },
     ],
@@ -34,7 +34,7 @@ export class InMemoryStore {
       {
         id: 'case-moto-g84',
         name: 'Capinha Anti-impacto Moto G84',
-        description: 'Capinha reforcada com bordas elevadas.',
+        description: 'Capinha reforçada com bordas elevadas.',
         price: 39.9,
       },
     ],

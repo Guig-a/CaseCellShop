@@ -18,7 +18,7 @@ export async function apiRequest<TResponse>(
     const body = (await response.json().catch(() => ({
       statusCode: response.status,
       error: 'REQUEST_ERROR',
-      message: 'Nao foi possivel concluir a operacao.',
+      message: 'Não foi possível concluir a operação.',
     }))) as ApiErrorBody;
 
     throw new ApiError(body);
