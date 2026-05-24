@@ -10,6 +10,32 @@ Repositório público:
 https://github.com/Guig-a/CaseCellShop
 ```
 
+## Índice
+
+Guia rápido para navegação na entrega.
+
+### Parte 1.B — Código e documentação técnica
+
+- [Stack](#stack)
+- [Como rodar](#como-rodar) — [Back-end](#back-end) · [Front-end](#front-end)
+- [Scripts úteis](#scripts-úteis)
+- [Visão da aplicação](#visão-da-aplicação) — telas e estados da UI
+- [Endpoints](#endpoints) — [`GET /products`](#get-products) · [`POST /checkout`](#post-checkout)
+- [Tratamento de erros](#tratamento-de-erros) — [Na interface](#erros-na-interface) · [Contrato no back-end](#contrato-de-erros-no-back-end)
+- [Decisões técnicas e trade-offs](#decisões-técnicas-e-trade-offs)
+
+### Parte 1.A — Respostas conceituais
+
+- [Pergunta 1 — Leitura inicial dos problemas](#pergunta-1---leitura-inicial-dos-problemas)
+- [Pergunta 2 — Infraestrutura e serviços de apoio](#pergunta-2---infraestrutura-e-serviços-de-apoio)
+- [Pergunta 3 — SDD: contrato do `POST /checkout`](#pergunta-3---sdd-contrato-do-post-checkout)
+- [Pergunta 4 — TDD: testes do `POST /checkout`](#pergunta-4---tdd-testes-do-post-checkout)
+- [Pergunta 5 — Uso de IA no desenvolvimento](#pergunta-5---uso-de-ia-no-desenvolvimento)
+
+### Outros artefatos
+
+- [PROMPTS.md](./PROMPTS.MD) — prompts e uso responsável de IA
+
 ## Stack
 
 - Back-end: Node.js, TypeScript e NestJS.
