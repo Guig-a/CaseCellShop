@@ -6,7 +6,9 @@ export class InsufficientStockError extends Error {
     readonly available: number,
     readonly requested: number,
   ) {
-    super(`Estoque insuficiente. Disponível: ${available}, solicitado: ${requested}.`);
+    super(
+      `Estoque insuficiente. Disponível: ${available}, solicitado: ${requested}.`,
+    );
   }
 }
 

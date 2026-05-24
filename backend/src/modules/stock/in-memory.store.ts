@@ -16,7 +16,8 @@ export class InMemoryStore {
       {
         id: 'case-iphone-15',
         name: 'Capinha Transparente iPhone 15',
-        description: 'Capinha flexível transparente com proteção contra impacto.',
+        description:
+          'Capinha flexível transparente com proteção contra impacto.',
         price: 49.9,
       },
     ],

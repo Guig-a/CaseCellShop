@@ -27,6 +27,7 @@ export class CheckoutService {
       });
     }
 
+    // Simula timeout do ERP para demonstrar o cenário de indisponibilidade do checkout.
     if (dto.customerId === 'simulate-erp-timeout') {
       throw new ServiceUnavailableException({
         error: 'ERP_UNAVAILABLE',

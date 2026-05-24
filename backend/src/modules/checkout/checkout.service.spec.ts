@@ -71,6 +71,28 @@ describe('CheckoutService', () => {
     expect(stockService.getAvailable('case-moto-g84')).toBe(1);
   });
 
+  it('prevents overselling when two purchases happen concurrently', async () => {
+    const results = await Promise.allSettled([
+      service.createCheckout({
+        productId: 'case-moto-g84',
+        quantity: 1,
+        customerId: 'customer-1',
+      }),
+      service.createCheckout({
+        productId: 'case-moto-g84',
+        quantity: 1,
+        customerId: 'customer-2',
+      }),
+    ]);
+
+    const fulfilled = results.filter((result) => result.status === 'fulfilled');
+    const rejected = results.filter((result) => result.status === 'rejected');
+
+    expect(fulfilled).toHaveLength(1);
+    expect(rejected).toHaveLength(1);
+    expect(stockService.getAvailable('case-moto-g84')).toBe(0);
+  });
+
   it('returns service unavailable when ERP timeout is simulated', async () => {
     await expect(
       service.createCheckout({
