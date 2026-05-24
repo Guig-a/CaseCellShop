@@ -144,7 +144,21 @@ O back-end retorna erros em formato padronizado:
 }
 ```
 
-Exemplos visuais:
+### Erros na interface
+
+O front-end trata os cenários que o usuário consegue executar no fluxo normal da aplicação: sucesso, carregamento, bloqueio de clique duplicado, validação inline de quantidade acima do estoque, indisponibilidade da API (ver seção **Visão da Aplicação**) e resposta de erro do servidor quando a validação local passou, mas o back-end rejeita a compra — por exemplo, corrida de estoque entre duas abas.
+
+Estoque insuficiente retornado pela API e exibido na UI:
+
+![Estoque insuficiente na interface](docs/assets/estoque-insuficiente.png)
+
+Nesse caso, o back-end confirma o estoque no checkout e devolve a mensagem com a quantidade disponível; a interface exibe o texto retornado pela API.
+
+### Erros garantidos no back-end
+
+Os demais cenários de erro não aparecem na interface no fluxo comum, porque a UI impede a ação antes do envio ou não oferece como dispará-los: o usuário só escolhe quantidade entre os três produtos listados, não informa `productId` manualmente, e o `customerId` é fixo no front-end. Mesmo assim, todos continuam implementados e cobertos por testes.
+
+Exemplos via API direta:
 
 ![Erro 400](docs/assets/400.png)
 
@@ -156,10 +170,10 @@ Exemplos visuais:
 
 Principais cenários tratados:
 
-- `400 VALIDATION_ERROR`: campos ausentes, tipos inválidos ou quantidade menor que 1.
-- `404 PRODUCT_NOT_FOUND`: produto inexistente.
-- `409 INSUFFICIENT_STOCK`: estoque insuficiente.
-- `503 ERP_UNAVAILABLE`: indisponibilidade simulada do ERP.
+- `400 VALIDATION_ERROR`: campos ausentes, tipos inválidos ou quantidade menor que 1. Na UI, tende a ser bloqueado antes do envio.
+- `404 PRODUCT_NOT_FOUND`: produto inexistente. Na UI, o usuário só seleciona produtos retornados por `GET /products`.
+- `409 INSUFFICIENT_STOCK`: estoque insuficiente. Na UI, validação preventiva ou mensagem da API (como acima).
+- `503 ERP_UNAVAILABLE`: indisponibilidade simulada do ERP. Garantido no back-end; na UI, o `customerId` fixo não aciona esse cenário.
 - `500 INTERNAL_ERROR`: erro inesperado.
 
 ## Decisões Técnicas e Trade-offs
@@ -184,7 +198,7 @@ O erro de estoque insuficiente é representado por uma classe específica, `Insu
 
 A indisponibilidade do ERP é simulada com um `customerId` específico, `simulate-erp-timeout`. Essa escolha foi intencional para manter o projeto simples, testável e sem dependência externa. O cenário é garantido no back-end e pode ser demonstrado via API direta ou testes. Em produção, a detecção de falha do ERP viria de timeout real ou circuit breaker, não de um valor especial no payload.
 
-O front-end aplica validações preventivas para melhorar a experiência: desabilita o botão quando a quantidade é inválida, quando o estoque é zero ou enquanto o checkout está em andamento, e exibe mensagem inline quando a quantidade excede o estoque disponível. Por isso, nem todo erro documentado na API aparece na interface para o usuário comum. Por exemplo, `400` por quantidade inválida tende a ser bloqueado antes do envio, e `503` por indisponibilidade do ERP não é acionado no fluxo normal da UI, porque o `customerId` é fixo. Esses cenários continuam cobertos no back-end e nos testes. Em produção, a UI trataria também respostas inesperadas do servidor — como corrida de estoque, timeout real do ERP ou produto removido entre a listagem e o checkout — exibindo a mensagem retornada pela API mesmo quando a validação local passou.
+O front-end aplica validações preventivas para melhorar a experiência: desabilita o botão quando a quantidade é inválida, quando o estoque é zero ou enquanto o checkout está em andamento, e exibe mensagem inline quando a quantidade excede o estoque disponível. Por isso, nem todo erro documentado na API aparece na interface para o usuário comum. A UI cobre, porém, todos os cenários pertinentes ao fluxo real — sucesso, loading, bloqueio de ação duplicada, validação de quantidade, indisponibilidade da API e mensagem do servidor quando o estoque muda entre a listagem e o checkout. Os demais erros (`400`, `404`, `503`) permanecem garantidos no back-end e nos testes. Em produção, a UI trataria também respostas inesperadas do servidor — como timeout real do ERP ou produto removido entre a listagem e o checkout — exibindo a mensagem retornada pela API mesmo quando a validação local passou.
 
 Não usei Docker porque o desafio prioriza simplicidade e execução local fácil. Para esta entrega, `npm install` e `npm run start:dev` são suficientes.
 
