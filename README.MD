@@ -17,6 +17,7 @@ Guia rápido para navegação na entrega.
 ### Parte 1.B — Código e documentação técnica
 
 - [Stack](#stack)
+- [Pré-requisitos](#pré-requisitos)
 - [Como rodar](#como-rodar) — [Back-end](#back-end) · [Front-end](#front-end)
 - [Scripts úteis](#scripts-úteis)
 - [Visão da aplicação](#visão-da-aplicação) — telas e estados da UI
@@ -42,6 +43,19 @@ Guia rápido para navegação na entrega.
 - Front-end: React, TypeScript e Vite.
 - Testes: Jest no back-end.
 - Dados: armazenamento em memória.
+
+## Pré-requisitos
+
+- Node.js **20.19+** ou **22.12+** (recomendado: **22 LTS**)
+- npm 10+
+
+NestJS 11 exige Node 20 ou superior; Vite 8 exige Node 20.19+ ou 22.12+. Versões anteriores (como Node 18) podem fazer o back-end subir parcialmente, mas tendem a falhar no front-end.
+
+Confira a versão instalada:
+
+```bash
+node --version
+```
 
 ## Como Rodar
 
